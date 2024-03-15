@@ -1,0 +1,11 @@
+{
+  "name": "bff",
+  "version": "1.0.0",
+  "description": "BFF para o projeto final. Ele receberá as reqs do front e direciona para a API.",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC"
+}
