@@ -1,7 +1,7 @@
 import "dotenv/config";
 import express  from "express";
 import { json, Express,  urlencoded} from "express";
-import bffControllers from "./controllers/bffController";
+// import bffControllers from "./controllers/bffController";
 
 const server: Express = express();
 
