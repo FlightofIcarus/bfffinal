@@ -3,6 +3,7 @@ import { AxiosStatic } from "axios";
 
 
 
+
 class BffController{
 
     constructor(protected httpManager: AxiosStatic, protected path: string){
