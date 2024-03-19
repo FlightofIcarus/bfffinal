@@ -1,7 +1,12 @@
 import "dotenv/config";
 import express  from "express";
 import { json, Express,  urlencoded} from "express";
-// import bffControllers from "./controllers/bffController";
+import bffController from "./controllers/BffController";
+import axios from "axios";
+
+const defaultPath = String(process.env.API_PATH)
+
+const bffRequestManager = new bffController(axios, defaultPath)
 
 const server: Express = express();
 
@@ -11,9 +16,7 @@ server.use(urlencoded());
 
 // server.use(bffControllers);
 
-server.post("/api/bff", (req, res) => {
-    res.send('<h1>Funfando!</h1>')
-});
+server.post("/api/bff", bffRequestManager.bffpost);
 
 const port: number | string = process.env.PORT || 3000;
 
