@@ -19,8 +19,9 @@ class BffController{
     
         console.log(APIReturn);
         
-    
-        return res.json(APIReturn);
+        res.setHeader('Content-Type', 'application/json');
+        
+        return res.json(APIReturn.data);
     
     }
 
