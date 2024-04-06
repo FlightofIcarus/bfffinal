@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "description": "BFF para o projeto final. Ele receberá as reqs do front e direciona para a API.",
   "main": "./src/server.js",
-  "type": "module",
   "scripts": {
     "dev": "ts-node ./src/server.ts",
     "build": "tsc --build",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "author": "",
   "license": "ISC",
@@ -17,9 +16,12 @@
     "express": "^4.18.3"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.12",
+    "cors": "^2.8.5",
     "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.2"
   }
