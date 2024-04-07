@@ -10,28 +10,37 @@ const mockedReq = {
     body: jest.fn()
 };
 const mockedRes = {
-    json:jest.fn()
+    json: jest.fn(),
+    setHeader: jest.fn()
 };
 
 
 
 describe("Testa camada do controller do BFF", () => {
 
-    axios.post = jest.fn().mockResolvedValue(mockedRes)
-
+    beforeEach(() => {
+        jest.clearAllMocks()
+    })
+    
     test("Testa se o server está direcionando a requisição corretamente para a API externa através do Axios.", async () => {
         
+        axios.post = jest.fn().mockResolvedValue(mockedRes)
         const requestInitial = await httpManager.bffpost(mockedReq, mockedRes)
-        console.log(requestInitial);
+        
         expect(axios.post).toHaveBeenCalled()
 
     });
 
     test("Testa se o server está recebendo a resposta da API e retornando corretamente uma resposta do Axios para o front.", async () => {
-
         
+
+        const mockedResponseData = { id: 1, name: 'Example' };
+        axios.post.mockResolvedValue(mockedResponseData)
+
         const responseFromBff = await httpManager.bffpost(mockedReq, mockedRes)
-        expect(mockedRes.json).toHaveBeenCalledWith(mockedRes)
+        
+        expect(mockedRes.setHeader).toHaveBeenCalledWith('Content-Type', 'application/json');
+        expect(mockedRes.json).toHaveBeenCalledWith(mockedResponseData)
     })
 
     test("Testa se o server retorna um erro se a API externa recusar requisição ou estiver off.", async () => {

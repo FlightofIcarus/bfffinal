@@ -1,4 +1,5 @@
 import "dotenv/config";
+import cors from "cors";
 import express  from "express";
 import { json, Express,  urlencoded} from "express";
 import bffController from "./controllers/BffController";
@@ -14,7 +15,13 @@ server.use(json());
 
 server.use(urlencoded());
 
-// server.use(bffControllers);
+const corsLiberada = ['http://localhost:5500', 'http://127.0.0.1:5500'];
+
+const corsOptions = {
+    origin: corsLiberada
+};
+
+server.use(cors(corsOptions))
 
 server.post("/api/bff", bffRequestManager.bffpost);
 
